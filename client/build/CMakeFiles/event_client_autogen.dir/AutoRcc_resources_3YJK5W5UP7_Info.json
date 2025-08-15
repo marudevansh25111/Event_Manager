@@ -1,0 +1,25 @@
+{
+	"BUILD_DIR" : "/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/event_client_autogen",
+	"CMAKE_BINARY_DIR" : "/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client",
+	"CMAKE_SOURCE_DIR" : "/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Unix Makefiles",
+	"INCLUDE_DIR" : "/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/event_client_autogen/include",
+	"INPUTS" : 
+	[
+		"/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/resources/dark_theme.qss"
+	],
+	"LOCK_FILE" : "/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles/event_client_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "resources" ],
+	"OUTPUT_CHECKSUM" : "3YJK5W5UP7",
+	"OUTPUT_NAME" : "qrc_resources.cpp",
+	"RCC_EXECUTABLE" : "/usr/local/share/qt/libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles/event_client_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Used.txt",
+	"SOURCE" : "/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/resources/resources.qrc",
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

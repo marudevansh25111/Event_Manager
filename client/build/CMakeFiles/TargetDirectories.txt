@@ -1,0 +1,5 @@
+/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles/event_client.dir
+/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles/edit_cache.dir
+/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles/rebuild_cache.dir
+/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles/event_client_autogen_timestamp_deps.dir
+/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles/event_client_autogen.dir
