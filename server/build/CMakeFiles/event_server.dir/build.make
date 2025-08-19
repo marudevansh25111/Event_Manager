@@ -128,10 +128,24 @@ CMakeFiles/event_server.dir/src/ReminderManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/event_server.dir/src/ReminderManager.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/src/ReminderManager.cpp -o CMakeFiles/event_server.dir/src/ReminderManager.cpp.s
 
+CMakeFiles/event_server.dir/src/AuthManager.cpp.o: CMakeFiles/event_server.dir/flags.make
+CMakeFiles/event_server.dir/src/AuthManager.cpp.o: /Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/src/AuthManager.cpp
+CMakeFiles/event_server.dir/src/AuthManager.cpp.o: CMakeFiles/event_server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/event_server.dir/src/AuthManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/event_server.dir/src/AuthManager.cpp.o -MF CMakeFiles/event_server.dir/src/AuthManager.cpp.o.d -o CMakeFiles/event_server.dir/src/AuthManager.cpp.o -c /Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/src/AuthManager.cpp
+
+CMakeFiles/event_server.dir/src/AuthManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/event_server.dir/src/AuthManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/src/AuthManager.cpp > CMakeFiles/event_server.dir/src/AuthManager.cpp.i
+
+CMakeFiles/event_server.dir/src/AuthManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/event_server.dir/src/AuthManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/src/AuthManager.cpp -o CMakeFiles/event_server.dir/src/AuthManager.cpp.s
+
 CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o: CMakeFiles/event_server.dir/flags.make
 CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o: /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp
 CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o: CMakeFiles/event_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o -MF CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o.d -o CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o -c /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp
 
 CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.i: cmake_force
@@ -145,7 +159,7 @@ CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/s
 CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o: CMakeFiles/event_server.dir/flags.make
 CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o: /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp
 CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o: CMakeFiles/event_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o -MF CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o.d -o CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o -c /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp
 
 CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.i: cmake_force
@@ -156,14 +170,30 @@ CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/s
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp -o CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.s
 
+CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o: CMakeFiles/event_server.dir/flags.make
+CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o: /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp
+CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o: CMakeFiles/event_server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o -MF CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o.d -o CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o -c /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp
+
+CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp > CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.i
+
+CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp -o CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.s
+
 # Object files for target event_server
 event_server_OBJECTS = \
 "CMakeFiles/event_server.dir/src/main.cpp.o" \
 "CMakeFiles/event_server.dir/src/EventServer.cpp.o" \
 "CMakeFiles/event_server.dir/src/Database.cpp.o" \
 "CMakeFiles/event_server.dir/src/ReminderManager.cpp.o" \
+"CMakeFiles/event_server.dir/src/AuthManager.cpp.o" \
 "CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o" \
-"CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o"
+"CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o" \
+"CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o"
 
 # External object files for target event_server
 event_server_EXTERNAL_OBJECTS =
@@ -172,14 +202,16 @@ event_server: CMakeFiles/event_server.dir/src/main.cpp.o
 event_server: CMakeFiles/event_server.dir/src/EventServer.cpp.o
 event_server: CMakeFiles/event_server.dir/src/Database.cpp.o
 event_server: CMakeFiles/event_server.dir/src/ReminderManager.cpp.o
+event_server: CMakeFiles/event_server.dir/src/AuthManager.cpp.o
 event_server: CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o
 event_server: CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o
+event_server: CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o
 event_server: CMakeFiles/event_server.dir/build.make
 event_server: /opt/anaconda3/lib/libboost_system.dylib
-event_server: /usr/local/Cellar/openssl@3/3.5.2/lib/libssl.dylib
-event_server: /usr/local/Cellar/openssl@3/3.5.2/lib/libcrypto.dylib
+event_server: /usr/local/opt/openssl@3/lib/libssl.dylib
+event_server: /usr/local/opt/openssl@3/lib/libcrypto.dylib
 event_server: CMakeFiles/event_server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable event_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable event_server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/event_server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

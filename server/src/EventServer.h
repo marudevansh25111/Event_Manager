@@ -13,6 +13,7 @@
 #include <set>
 #include "Database.h"
 #include "ReminderManager.h"
+#include "AuthManager.h"
 #include "Event.h"
 
 namespace beast = boost::beast;
@@ -71,15 +72,24 @@ private:
     void handle_event_delete(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data);
     void handle_event_list(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data);
     
+    // Authentication handlers
+    void handle_auth_login(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data);
+    void handle_auth_register(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data);
+    void handle_auth_logout(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data);
+    
     // Broadcast functions
     void broadcast_to_all(const std::string& message);
     void broadcast_event_update(const Event& event, const std::string& action);
     void send_reminder(const Event& event);
+    
+    // Authentication helper
+    bool is_authenticated(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data);
 
     net::io_context m_ioc;
     tcp::acceptor m_acceptor;
     std::unique_ptr<Database> m_database;
     std::unique_ptr<ReminderManager> m_reminderManager;
+    std::unique_ptr<AuthManager> m_authManager;
     std::thread m_thread;
     std::mutex m_sessions_lock;
     std::set<std::shared_ptr<WebSocketSession>> m_sessions;

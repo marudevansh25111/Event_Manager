@@ -4,9 +4,9 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB
 
-CXX_INCLUDES = -I/opt/homebrew/include -I/Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/../shared -isystem /opt/anaconda3/include -isystem /usr/local/Cellar/openssl@3/3.5.2/include
+CXX_INCLUDES = -I/usr/local/opt/openssl@3/include -I/Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/../shared -isystem /opt/anaconda3/include
 
-CXX_FLAGSx86_64 = -O3 -DNDEBUG -std=gnu++17 -arch x86_64
+CXX_FLAGSx86_64 = -std=gnu++17 -arch x86_64
 
-CXX_FLAGS = -O3 -DNDEBUG -std=gnu++17 -arch x86_64
+CXX_FLAGS = -std=gnu++17 -arch x86_64
 

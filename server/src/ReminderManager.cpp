@@ -39,12 +39,32 @@ void ReminderManager::reminderLoop() {
     }
 }
 
+// void ReminderManager::checkAndSendReminders() {
+//     auto events = m_database->get_events_needing_reminder();
+    
+//     for (auto& event : events) {
+//         if (event.needs_reminder()) {
+//             // Send reminder through callback
+//             if (m_reminderCallback) {
+//                 m_reminderCallback(event);
+//             }
+            
+//             // Mark reminder as sent
+//             event.reminder_sent = true;
+//             m_database->update_event(event);
+            
+//             std::cout << "Reminder sent for event: " << event.title << std::endl;
+//         }
+//     }
+// }
+
 void ReminderManager::checkAndSendReminders() {
+    // Get ALL events that need reminders (not user-specific)
     auto events = m_database->get_events_needing_reminder();
     
     for (auto& event : events) {
         if (event.needs_reminder()) {
-            // Send reminder through callback
+            // Send reminder to ALL users through callback
             if (m_reminderCallback) {
                 m_reminderCallback(event);
             }
@@ -53,7 +73,8 @@ void ReminderManager::checkAndSendReminders() {
             event.reminder_sent = true;
             m_database->update_event(event);
             
-            std::cout << "Reminder sent for event: " << event.title << std::endl;
+            std::cout << "Reminder sent to all users for event: " << event.title 
+                      << " (Created by User ID: " << event.user_id << ")" << std::endl;
         }
     }
 }

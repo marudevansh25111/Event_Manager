@@ -8,6 +8,7 @@
 WebSocketClient::WebSocketClient(QObject *parent)
     : QObject(parent)
     , m_isConnected(false)
+    , m_isAuthenticated(false)
 {
     m_webSocket = std::make_unique<QWebSocket>();
     
@@ -50,30 +51,75 @@ bool WebSocketClient::isConnected() const {
 }
 
 void WebSocketClient::createEvent(const Event& event) {
-    if (!m_isConnected) return;
+    if (!m_isConnected || !m_isAuthenticated) return;
     
     auto json_data = event.to_json();
+    json_data["auth_token"] = m_authToken.toStdString();
     sendMessage(QString::fromStdString(Protocol::EVENT_CREATE), json_data);
 }
 
 void WebSocketClient::updateEvent(const Event& event) {
-    if (!m_isConnected) return;
+    if (!m_isConnected || !m_isAuthenticated) return;
     
     auto json_data = event.to_json();
+    json_data["auth_token"] = m_authToken.toStdString();
     sendMessage(QString::fromStdString(Protocol::EVENT_UPDATE), json_data);
 }
 
 void WebSocketClient::deleteEvent(int eventId) {
-    if (!m_isConnected) return;
+    if (!m_isConnected || !m_isAuthenticated) return;
     
-    nlohmann::json data = {{"id", eventId}};
+    nlohmann::json data = {
+        {"id", eventId},
+        {"auth_token", m_authToken.toStdString()}
+    };
     sendMessage(QString::fromStdString(Protocol::EVENT_DELETE), data);
 }
 
 void WebSocketClient::requestEventList() {
+    if (!m_isConnected || !m_isAuthenticated) return;
+    
+    nlohmann::json data = {
+        {"auth_token", m_authToken.toStdString()}
+    };
+    sendMessage(QString::fromStdString(Protocol::EVENT_LIST), data);
+}
+
+void WebSocketClient::login(const QString& username, const QString& password) {
     if (!m_isConnected) return;
     
-    sendMessage(QString::fromStdString(Protocol::EVENT_LIST));
+    nlohmann::json login_data = {
+        {"username", username.toStdString()},
+        {"password", password.toStdString()}
+    };
+    sendMessage(QString::fromStdString(Protocol::AUTH_LOGIN), login_data);
+}
+
+void WebSocketClient::registerUser(const QString& username, const QString& email, 
+                                 const QString& password, const QString& displayName) {
+    if (!m_isConnected) return;
+    
+    nlohmann::json register_data = {
+        {"username", username.toStdString()},
+        {"email", email.toStdString()},
+        {"password", password.toStdString()},
+        {"display_name", displayName.toStdString()}
+    };
+    sendMessage(QString::fromStdString(Protocol::AUTH_REGISTER), register_data);
+}
+
+void WebSocketClient::logout() {
+    if (!m_isConnected || !m_isAuthenticated) return;
+    
+    nlohmann::json logout_data = {
+        {"auth_token", m_authToken.toStdString()}
+    };
+    sendMessage(QString::fromStdString(Protocol::AUTH_LOGOUT), logout_data);
+    
+    // Clear local auth state
+    m_authToken.clear();
+    m_currentUser.clear();
+    m_isAuthenticated = false;
 }
 
 void WebSocketClient::onConnected() {
@@ -147,9 +193,89 @@ void WebSocketClient::sendMessage(const QString& type, const nlohmann::json& dat
     }
 }
 
+// void WebSocketClient::handleMessage(const QString& type, const nlohmann::json& data) {
+//     try {
+//         if (type == QString::fromStdString(Protocol::AUTH_SUCCESS)) {
+//             if (data.contains("token")) {
+//                 // Login successful
+//                 m_authToken = QString::fromStdString(data["token"]);
+//                 m_currentUser = QString::fromStdString(data["user"]["username"]);
+//                 m_isAuthenticated = true;
+//                 emit authenticationSucceeded(m_currentUser, m_authToken);
+//             } else {
+//                 // Registration successful
+//                 emit registrationSucceeded();
+//             }
+            
+//         } else if (type == QString::fromStdString(Protocol::AUTH_ERROR)) {
+//             QString error = QString::fromStdString(data["error"]);
+//             QString code = data.contains("code") ? QString::fromStdString(data["code"]) : "";
+            
+//             if (code == "REGISTRATION_FAILED" || code == "REGISTRATION_ERROR") {
+//                 emit registrationFailed(error);
+//             } else {
+//                 emit authenticationFailed(error);
+//             }
+            
+//         } else if (type == QString::fromStdString(Protocol::EVENT_LIST)) {
+//             std::vector<Event> events;
+//             for (const auto& eventJson : data) {
+//                 events.push_back(Event::from_json(eventJson));
+//             }
+//             emit eventListReceived(events);
+            
+//         } else if (type == QString::fromStdString(Protocol::EVENT_UPDATE)) {
+//             Event event = Event::from_json(data);
+//             QString action = QString::fromStdString(data["action"]);
+//             emit eventReceived(event, action);
+            
+//         } else if (type == QString::fromStdString(Protocol::EVENT_DELETE)) {
+//             Event event;
+//             event.id = data["id"];
+//             emit eventReceived(event, "deleted");
+            
+//         } else if (type == QString::fromStdString(Protocol::REMINDER)) {
+//             Event event = Event::from_json(data);
+//             QString message = QString::fromStdString(data["message"]);
+//             emit reminderReceived(event, message);
+            
+//         } else if (type == QString::fromStdString(Protocol::HEARTBEAT)) {
+//             // Heartbeat response - no action needed
+//         }
+        
+//     } catch (const std::exception& e) {
+//         qDebug() << "Error handling message:" << e.what();
+//         emit errorOccurred(QString("Failed to handle server message: %1").arg(e.what()));
+//     }
+// }
+
 void WebSocketClient::handleMessage(const QString& type, const nlohmann::json& data) {
     try {
-        if (type == QString::fromStdString(Protocol::EVENT_LIST)) {
+        qDebug() << "🔔 CLIENT: Received message type:" << type;
+        
+        if (type == QString::fromStdString(Protocol::AUTH_SUCCESS)) {
+            if (data.contains("token")) {
+                // Login successful
+                m_authToken = QString::fromStdString(data["token"]);
+                m_currentUser = QString::fromStdString(data["user"]["username"]);
+                m_isAuthenticated = true;
+                emit authenticationSucceeded(m_currentUser, m_authToken);
+            } else {
+                // Registration successful
+                emit registrationSucceeded();
+            }
+            
+        } else if (type == QString::fromStdString(Protocol::AUTH_ERROR)) {
+            QString error = QString::fromStdString(data["error"]);
+            QString code = data.contains("code") ? QString::fromStdString(data["code"]) : "";
+            
+            if (code == "REGISTRATION_FAILED" || code == "REGISTRATION_ERROR") {
+                emit registrationFailed(error);
+            } else {
+                emit authenticationFailed(error);
+            }
+            
+        } else if (type == QString::fromStdString(Protocol::EVENT_LIST)) {
             std::vector<Event> events;
             for (const auto& eventJson : data) {
                 events.push_back(Event::from_json(eventJson));
@@ -167,12 +293,29 @@ void WebSocketClient::handleMessage(const QString& type, const nlohmann::json& d
             emit eventReceived(event, "deleted");
             
         } else if (type == QString::fromStdString(Protocol::REMINDER)) {
+            qDebug() << "🔔 CLIENT: Processing REMINDER message";
+            
+            // Parse the reminder data
             Event event = Event::from_json(data);
-            QString message = QString::fromStdString(data["message"]);
+            QString message;
+            
+            if (data.contains("message")) {
+                message = QString::fromStdString(data["message"]);
+            } else {
+                // Fallback message if server doesn't send one
+                message = QString("Reminder: %1 is starting soon!").arg(QString::fromStdString(event.title));
+            }
+            
+            qDebug() << "🔔 CLIENT: Emitting reminderReceived signal for event:" << QString::fromStdString(event.title);
+            qDebug() << "🔔 CLIENT: Reminder message:" << message;
+            
             emit reminderReceived(event, message);
             
         } else if (type == QString::fromStdString(Protocol::HEARTBEAT)) {
             // Heartbeat response - no action needed
+            qDebug() << "CLIENT: Heartbeat received";
+        } else {
+            qDebug() << "CLIENT: Unknown message type:" << type;
         }
         
     } catch (const std::exception& e) {

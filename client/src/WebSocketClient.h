@@ -24,6 +24,12 @@ public:
     void updateEvent(const Event& event);
     void deleteEvent(int eventId);
     void requestEventList();
+    
+    // Authentication operations
+    void login(const QString& username, const QString& password);
+    void registerUser(const QString& username, const QString& email, 
+                     const QString& password, const QString& displayName);
+    void logout();
 
 signals:
     void connected();
@@ -32,6 +38,13 @@ signals:
     void eventListReceived(const std::vector<Event>& events);
     void reminderReceived(const Event& event, const QString& message);
     void errorOccurred(const QString& error);
+    
+    // Authentication signals
+    void authenticationSucceeded(const QString& username, const QString& token);
+    void authenticationFailed(const QString& error);
+    void registrationSucceeded();
+    void registrationFailed(const QString& error);
+    void loggedOut();
 
 private slots:
     void onConnected();
@@ -48,6 +61,11 @@ private:
     QTimer* m_heartbeatTimer;
     QString m_serverUrl;
     bool m_isConnected;
+    
+    // Authentication state
+    QString m_authToken;
+    QString m_currentUser;
+    bool m_isAuthenticated;
 };
 
 #endif // WEBSOCKETCLIENT_H

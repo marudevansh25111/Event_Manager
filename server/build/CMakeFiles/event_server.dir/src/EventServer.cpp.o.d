@@ -544,6 +544,7 @@ CMakeFiles/event_server.dir/src/EventServer.cpp.o: \
   /usr/local/include/boost/asio/detail/config.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/cassert \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/assert.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_static_assert.h \
   /usr/local/include/boost/asio/cancellation_type.hpp \
   /usr/local/include/boost/asio/detail/push_options.hpp \
@@ -2096,6 +2097,14 @@ CMakeFiles/event_server.dir/src/EventServer.cpp.o: \
   /Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/src/Database.h \
   /opt/anaconda3/include/sqlite3.h \
   /Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/../shared/Event.h \
+  /Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/../shared/User.h \
+  /usr/local/opt/openssl@3/include/openssl/sha.h \
+  /usr/local/opt/openssl@3/include/openssl/macros.h \
+  /usr/local/opt/openssl@3/include/openssl/opensslconf.h \
+  /usr/local/opt/openssl@3/include/openssl/configuration.h \
+  /usr/local/opt/openssl@3/include/openssl/opensslv.h \
+  /usr/local/opt/openssl@3/include/openssl/e_os2.h \
   /Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/src/ReminderManager.h \
-  /Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/../shared/Protocol.h \
+  /Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/src/AuthManager.h \
+  /Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/src/../../shared/Protocol.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream

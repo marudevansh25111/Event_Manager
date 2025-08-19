@@ -799,6 +799,7 @@ CMakeFiles/event_server.dir/src/Database.cpp.o: \
   /usr/local/include/nlohmann/thirdparty/hedley/hedley.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/cassert \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/assert.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_static_assert.h \
   /usr/local/include/nlohmann/detail/string_escape.hpp \
   /usr/local/include/nlohmann/detail/input/position_t.hpp \
@@ -885,4 +886,11 @@ CMakeFiles/event_server.dir/src/Database.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/any \
   /usr/local/include/nlohmann/detail/macro_unscope.hpp \
   /usr/local/include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
+  /Users/devanshmaru/Desktop/Mtech/funf/event-manager/server/../shared/User.h \
+  /usr/local/opt/openssl@3/include/openssl/sha.h \
+  /usr/local/opt/openssl@3/include/openssl/macros.h \
+  /usr/local/opt/openssl@3/include/openssl/opensslconf.h \
+  /usr/local/opt/openssl@3/include/openssl/configuration.h \
+  /usr/local/opt/openssl@3/include/openssl/opensslv.h \
+  /usr/local/opt/openssl@3/include/openssl/e_os2.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream

@@ -17,11 +17,6 @@
 //The directory containing a CMake configuration file for Boost.
 Boost_DIR:PATH=/opt/anaconda3/lib/cmake/Boost-1.82.0
 
-//Path to a file.
-Boost_INCLUDE_DIR:PATH=/opt/anaconda3/include
-
-Boost_SYSTEM_LIBRARY_RELEASE:STRING=/opt/anaconda3/lib/libboost_system.dylib
-
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=CMAKE_ADDR2LINE-NOTFOUND
 
@@ -30,7 +25,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=Release
+CMAKE_BUILD_TYPE:STRING=
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -137,7 +132,7 @@ CMAKE_OBJCOPY:FILEPATH=CMAKE_OBJCOPY-NOTFOUND
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Build architectures for OSX
-CMAKE_OSX_ARCHITECTURES:STRING=
+CMAKE_OSX_ARCHITECTURES:STRING=x86_64
 
 //Minimum OS X version to target for deployment (at runtime); newer
 // APIs weak linked. Set to empty string for default value.
@@ -248,15 +243,6 @@ EventManagerServer_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 EventManagerServer_SOURCE_DIR:STATIC=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/server
 
-//Path to a library.
-OPENSSL_CRYPTO_LIBRARY:FILEPATH=/usr/local/Cellar/openssl@3/3.5.2/lib/libcrypto.dylib
-
-//Path to a file.
-OPENSSL_INCLUDE_DIR:PATH=/usr/local/Cellar/openssl@3/3.5.2/include
-
-//Path to a library.
-OPENSSL_SSL_LIBRARY:FILEPATH=/usr/local/Cellar/openssl@3/3.5.2/lib/libssl.dylib
-
 //Arguments to supply to pkg-config
 PKG_CONFIG_ARGN:STRING=
 
@@ -275,19 +261,11 @@ nlohmann_json_DIR:PATH=/usr/local/share/cmake/nlohmann_json
 //Path to a library.
 pkgcfg_lib_SQLITE3_sqlite3:FILEPATH=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/libsqlite3.tbd
 
-//Path to a library.
-pkgcfg_lib__OPENSSL_crypto:FILEPATH=/usr/local/Cellar/openssl@3/3.5.2/lib/libcrypto.dylib
-
-//Path to a library.
-pkgcfg_lib__OPENSSL_ssl:FILEPATH=/usr/local/Cellar/openssl@3/3.5.2/lib/libssl.dylib
-
 
 ########################
 # INTERNAL cache entries
 ########################
 
-//ADVANCED property for variable: Boost_DIR
-Boost_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -431,22 +409,12 @@ CMAKE_TAPI-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
-//Details about finding Boost
-FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/opt/anaconda3/lib/cmake/Boost-1.82.0/BoostConfig.cmake][found components: system ][v1.82.0()]
-//Details about finding OpenSSL
-FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[/usr/local/Cellar/openssl@3/3.5.2/lib/libcrypto.dylib][/usr/local/Cellar/openssl@3/3.5.2/include][ ][v3.5.2()]
 //Details about finding PkgConfig
 FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/local/bin/pkg-config][v2.5.1()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding nlohmann_json
 FIND_PACKAGE_MESSAGE_DETAILS_nlohmann_json:INTERNAL=[/usr/local/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake][v3.12.0()]
-//ADVANCED property for variable: OPENSSL_CRYPTO_LIBRARY
-OPENSSL_CRYPTO_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OPENSSL_INCLUDE_DIR
-OPENSSL_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OPENSSL_SSL_LIBRARY
-OPENSSL_SSL_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PKG_CONFIG_ARGN
 PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
@@ -486,54 +454,13 @@ SQLITE3_sqlite3_INCLUDEDIR:INTERNAL=
 SQLITE3_sqlite3_LIBDIR:INTERNAL=
 SQLITE3_sqlite3_PREFIX:INTERNAL=
 SQLITE3_sqlite3_VERSION:INTERNAL=
-_OPENSSL_CFLAGS:INTERNAL=-I/usr/local/Cellar/openssl@3/3.5.2/include
-_OPENSSL_CFLAGS_I:INTERNAL=
-_OPENSSL_CFLAGS_OTHER:INTERNAL=
-_OPENSSL_FOUND:INTERNAL=1
-_OPENSSL_INCLUDEDIR:INTERNAL=/usr/local/Cellar/openssl@3/3.5.2/include
-_OPENSSL_INCLUDE_DIRS:INTERNAL=/usr/local/Cellar/openssl@3/3.5.2/include
-_OPENSSL_LDFLAGS:INTERNAL=-L/usr/local/Cellar/openssl@3/3.5.2/lib;-lssl;-lcrypto
-_OPENSSL_LDFLAGS_OTHER:INTERNAL=
-_OPENSSL_LIBDIR:INTERNAL=/usr/local/Cellar/openssl@3/3.5.2/lib
-_OPENSSL_LIBRARIES:INTERNAL=ssl;crypto
-_OPENSSL_LIBRARY_DIRS:INTERNAL=/usr/local/Cellar/openssl@3/3.5.2/lib
-_OPENSSL_LIBS:INTERNAL=
-_OPENSSL_LIBS_L:INTERNAL=
-_OPENSSL_LIBS_OTHER:INTERNAL=
-_OPENSSL_LIBS_PATHS:INTERNAL=
-_OPENSSL_MODULE_NAME:INTERNAL=openssl
-_OPENSSL_PREFIX:INTERNAL=/usr/local/Cellar/openssl@3/3.5.2
-_OPENSSL_STATIC_CFLAGS:INTERNAL=-I/usr/local/Cellar/openssl@3/3.5.2/include
-_OPENSSL_STATIC_CFLAGS_I:INTERNAL=
-_OPENSSL_STATIC_CFLAGS_OTHER:INTERNAL=
-_OPENSSL_STATIC_INCLUDE_DIRS:INTERNAL=/usr/local/Cellar/openssl@3/3.5.2/include
-_OPENSSL_STATIC_LDFLAGS:INTERNAL=-L/usr/local/Cellar/openssl@3/3.5.2/lib;-lssl;-lcrypto
-_OPENSSL_STATIC_LDFLAGS_OTHER:INTERNAL=
-_OPENSSL_STATIC_LIBDIR:INTERNAL=
-_OPENSSL_STATIC_LIBRARIES:INTERNAL=ssl;crypto
-_OPENSSL_STATIC_LIBRARY_DIRS:INTERNAL=/usr/local/Cellar/openssl@3/3.5.2/lib
-_OPENSSL_STATIC_LIBS:INTERNAL=
-_OPENSSL_STATIC_LIBS_L:INTERNAL=
-_OPENSSL_STATIC_LIBS_OTHER:INTERNAL=
-_OPENSSL_STATIC_LIBS_PATHS:INTERNAL=
-_OPENSSL_VERSION:INTERNAL=3.5.2
-_OPENSSL_openssl_INCLUDEDIR:INTERNAL=
-_OPENSSL_openssl_LIBDIR:INTERNAL=
-_OPENSSL_openssl_PREFIX:INTERNAL=
-_OPENSSL_openssl_VERSION:INTERNAL=
 __pkg_config_arguments_SQLITE3:INTERNAL=REQUIRED;sqlite3
-__pkg_config_arguments__OPENSSL:INTERNAL=QUIET;openssl
 __pkg_config_checked_SQLITE3:INTERNAL=1
-__pkg_config_checked__OPENSSL:INTERNAL=1
 //ADVANCED property for variable: boost_headers_DIR
 boost_headers_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: boost_system_DIR
 boost_system_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_SQLITE3_sqlite3
 pkgcfg_lib_SQLITE3_sqlite3-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: pkgcfg_lib__OPENSSL_crypto
-pkgcfg_lib__OPENSSL_crypto-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: pkgcfg_lib__OPENSSL_ssl
-pkgcfg_lib__OPENSSL_ssl-ADVANCED:INTERNAL=1
 prefix_result:INTERNAL=/usr/lib
 

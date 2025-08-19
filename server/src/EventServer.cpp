@@ -1,5 +1,6 @@
 #include "EventServer.h"
-#include "Protocol.h"
+// #include "Protocol.h"  // Make sure this is included
+#include "../../shared/Protocol.h"
 #include <iostream>
 #include <chrono>
 
@@ -163,6 +164,7 @@ EventServer::EventServer()
     
     m_database = std::make_unique<Database>("events.db");
     m_reminderManager = std::make_unique<ReminderManager>(m_database.get());
+    m_authManager = std::make_unique<AuthManager>(m_database.get());
     
     // Setup reminder callback
     m_reminderManager->setReminderCallback([this](const Event& event) {
@@ -282,7 +284,13 @@ void EventServer::on_message(std::shared_ptr<WebSocketSession> session, const st
     try {
         auto [type, data] = Protocol::parse_message(message);
         
-        if (type == Protocol::EVENT_CREATE) {
+        if (type == Protocol::AUTH_LOGIN) {
+            handle_auth_login(session, data);
+        } else if (type == Protocol::AUTH_REGISTER) {
+            handle_auth_register(session, data);
+        } else if (type == Protocol::AUTH_LOGOUT) {
+            handle_auth_logout(session, data);
+        } else if (type == Protocol::EVENT_CREATE) {
             handle_event_create(session, data);
         } else if (type == Protocol::EVENT_UPDATE) {
             handle_event_update(session, data);
@@ -297,6 +305,27 @@ void EventServer::on_message(std::shared_ptr<WebSocketSession> session, const st
     }
 }
 
+// void EventServer::on_connection_established(std::shared_ptr<WebSocketSession> session) {
+//     // Add to active sessions only after successful handshake
+//     {
+//         std::lock_guard<std::mutex> lock(m_sessions_lock);
+//         m_sessions.insert(session);
+//     }
+    
+//     std::cout << "Client successfully connected! Total active connections: " << m_sessions.size() << std::endl;
+    
+//     // Send all existing events to the new client
+//     auto events = m_database->get_all_events();
+//     nlohmann::json events_json = nlohmann::json::array();
+    
+//     for (const auto& event : events) {
+//         events_json.push_back(event.to_json());
+//     }
+    
+//     auto message = Protocol::create_message(Protocol::EVENT_LIST, events_json);
+//     session->send(message.dump());
+// }
+
 void EventServer::on_connection_established(std::shared_ptr<WebSocketSession> session) {
     // Add to active sessions only after successful handshake
     {
@@ -306,17 +335,11 @@ void EventServer::on_connection_established(std::shared_ptr<WebSocketSession> se
     
     std::cout << "Client successfully connected! Total active connections: " << m_sessions.size() << std::endl;
     
-    // Send all existing events to the new client
-    auto events = m_database->get_all_events();
-    nlohmann::json events_json = nlohmann::json::array();
-    
-    for (const auto& event : events) {
-        events_json.push_back(event.to_json());
-    }
-    
-    auto message = Protocol::create_message(Protocol::EVENT_LIST, events_json);
-    session->send(message.dump());
+    // NOTE: Don't send events here - only send after authentication
+    // Events will be sent when user logs in via handle_event_list()
 }
+
+
 
 void EventServer::on_session_close(std::shared_ptr<WebSocketSession> session) {
     std::lock_guard<std::mutex> lock(m_sessions_lock);
@@ -324,28 +347,117 @@ void EventServer::on_session_close(std::shared_ptr<WebSocketSession> session) {
     std::cout << "Client disconnected. Total active connections: " << m_sessions.size() << std::endl;
 }
 
+// void EventServer::handle_event_create(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data) {
+//     if (!is_authenticated(session, data)) return;
+    
+//     try {
+//         Event event = Event::from_json(data);
+        
+//         // Set user_id from auth token
+//         std::string token = data["auth_token"];
+//         int user_id = m_authManager->get_user_id_by_token(token);
+//         event.user_id = user_id;
+        
+//         int id = m_database->create_event(event);
+//         event.id = id;
+        
+//         broadcast_event_update(event, "created");
+//         std::cout << "Event created: " << event.title << " (User: " << user_id << ")" << std::endl;
+        
+//     } catch (const std::exception& e) {
+//         std::cerr << "Error creating event: " << e.what() << std::endl;
+//     }
+// }
+
+
 void EventServer::handle_event_create(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data) {
+    if (!is_authenticated(session, data)) return;
+    
     try {
         Event event = Event::from_json(data);
+        
+        // Set user_id from auth token (to track who created it)
+        std::string token = data["auth_token"];
+        int user_id = m_authManager->get_user_id_by_token(token);
+        event.user_id = user_id;
+        
         int id = m_database->create_event(event);
         event.id = id;
         
+        // SHARED CALENDAR: Broadcast new event to ALL connected users
         broadcast_event_update(event, "created");
-        std::cout << "Event created: " << event.title << std::endl;
+        std::cout << "Event created and broadcast to all users: " << event.title << " (Created by User: " << user_id << ")" << std::endl;
         
     } catch (const std::exception& e) {
         std::cerr << "Error creating event: " << e.what() << std::endl;
     }
 }
 
+
+// void EventServer::handle_event_update(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data) {
+//     if (!is_authenticated(session, data)) return;
+    
+//     try {
+//         Event event = Event::from_json(data);
+        
+//         // Verify user owns this event
+//         std::string token = data["auth_token"];
+//         int user_id = m_authManager->get_user_id_by_token(token);
+        
+//         Event existing_event = m_database->get_event_by_id(event.id);
+//         if (existing_event.user_id != user_id) {
+//             nlohmann::json error_response = {
+//                 {"error", "You can only modify your own events"},
+//                 {"code", "PERMISSION_DENIED"}
+//             };
+//             auto message = Protocol::create_message(Protocol::AUTH_ERROR, error_response);
+//             session->send(message.dump());
+//             return;
+//         }
+        
+//         event.user_id = user_id; // Ensure user_id is set
+//         bool success = m_database->update_event(event);
+        
+//         if (success) {
+//             broadcast_event_update(event, "updated");
+//             std::cout << "Event updated: " << event.title << " (User: " << user_id << ")" << std::endl;
+//         }
+        
+//     } catch (const std::exception& e) {
+//         std::cerr << "Error updating event: " << e.what() << std::endl;
+//     }
+// }
+
+
 void EventServer::handle_event_update(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data) {
+    if (!is_authenticated(session, data)) return;
+    
     try {
         Event event = Event::from_json(data);
+        
+        // Get current user from token
+        std::string token = data["auth_token"];
+        int user_id = m_authManager->get_user_id_by_token(token);
+        
+        // OPTIONAL: Check if user owns this event (for edit permissions)
+        Event existing_event = m_database->get_event_by_id(event.id);
+        if (existing_event.user_id != user_id) {
+            nlohmann::json error_response = {
+                {"error", "You can only modify your own events"},
+                {"code", "PERMISSION_DENIED"}
+            };
+            auto message = Protocol::create_message(Protocol::AUTH_ERROR, error_response);
+            session->send(message.dump());
+            return;
+        }
+        
+        event.user_id = user_id; // Ensure user_id is set
         bool success = m_database->update_event(event);
         
         if (success) {
+            // SHARED CALENDAR: Broadcast update to ALL connected users
             broadcast_event_update(event, "updated");
-            std::cout << "Event updated: " << event.title << std::endl;
+            std::cout << "Event updated and broadcast to all users: " << event.title << " (Updated by User: " << user_id << ")" << std::endl;
         }
         
     } catch (const std::exception& e) {
@@ -353,16 +465,70 @@ void EventServer::handle_event_update(std::shared_ptr<WebSocketSession> session,
     }
 }
 
+
+
+// void EventServer::handle_event_delete(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data) {
+//     if (!is_authenticated(session, data)) return;
+    
+//     try {
+//         int event_id = data["id"];
+//         std::string token = data["auth_token"];
+//         int user_id = m_authManager->get_user_id_by_token(token);
+        
+//         // Verify user owns this event
+//         Event existing_event = m_database->get_event_by_id(event_id);
+//         if (existing_event.user_id != user_id) {
+//             nlohmann::json error_response = {
+//                 {"error", "You can only delete your own events"},
+//                 {"code", "PERMISSION_DENIED"}
+//             };
+//             auto message = Protocol::create_message(Protocol::AUTH_ERROR, error_response);
+//             session->send(message.dump());
+//             return;
+//         }
+        
+//         bool success = m_database->delete_event(event_id);
+        
+//         if (success) {
+//             nlohmann::json delete_data = {{"id", event_id}};
+//             auto message = Protocol::create_message(Protocol::EVENT_DELETE, delete_data);
+//             broadcast_to_all(message.dump());
+//             std::cout << "Event deleted: " << event_id << " (User: " << user_id << ")" << std::endl;
+//         }
+        
+//     } catch (const std::exception& e) {
+//         std::cerr << "Error deleting event: " << e.what() << std::endl;
+//     }
+// }
+
 void EventServer::handle_event_delete(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data) {
+    if (!is_authenticated(session, data)) return;
+    
     try {
         int event_id = data["id"];
+        std::string token = data["auth_token"];
+        int user_id = m_authManager->get_user_id_by_token(token);
+        
+        // OPTIONAL: Check if user owns this event (for delete permissions)
+        Event existing_event = m_database->get_event_by_id(event_id);
+        if (existing_event.user_id != user_id) {
+            nlohmann::json error_response = {
+                {"error", "You can only delete your own events"},
+                {"code", "PERMISSION_DENIED"}
+            };
+            auto message = Protocol::create_message(Protocol::AUTH_ERROR, error_response);
+            session->send(message.dump());
+            return;
+        }
+        
         bool success = m_database->delete_event(event_id);
         
         if (success) {
+            // SHARED CALENDAR: Broadcast deletion to ALL connected users
             nlohmann::json delete_data = {{"id", event_id}};
             auto message = Protocol::create_message(Protocol::EVENT_DELETE, delete_data);
             broadcast_to_all(message.dump());
-            std::cout << "Event deleted: " << event_id << std::endl;
+            std::cout << "Event deleted and broadcast to all users: " << event_id << " (Deleted by User: " << user_id << ")" << std::endl;
         }
         
     } catch (const std::exception& e) {
@@ -370,16 +536,50 @@ void EventServer::handle_event_delete(std::shared_ptr<WebSocketSession> session,
     }
 }
 
+
+// void EventServer::handle_event_list(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data) {
+//     if (!is_authenticated(session, data)) return;
+    
+//     try {
+//         std::string token = data["auth_token"];
+//         int user_id = m_authManager->get_user_id_by_token(token);
+        
+//         // Only return events for this user
+//         auto events = m_database->get_events_for_user(user_id);
+//         nlohmann::json events_json = nlohmann::json::array();
+        
+//         for (const auto& event : events) {
+//             events_json.push_back(event.to_json());
+//         }
+        
+//         auto message = Protocol::create_message(Protocol::EVENT_LIST, events_json);
+//         session->send(message.dump());
+        
+//     } catch (const std::exception& e) {
+//         std::cerr << "Error listing events: " << e.what() << std::endl;
+//     }
+// }
+
 void EventServer::handle_event_list(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data) {
-    auto events = m_database->get_all_events();
-    nlohmann::json events_json = nlohmann::json::array();
+    if (!is_authenticated(session, data)) return;
     
-    for (const auto& event : events) {
-        events_json.push_back(event.to_json());
+    try {
+        // SHARED CALENDAR: Show ALL events to authenticated users
+        auto events = m_database->get_all_events();
+        nlohmann::json events_json = nlohmann::json::array();
+        
+        for (const auto& event : events) {
+            events_json.push_back(event.to_json());
+        }
+        
+        auto message = Protocol::create_message(Protocol::EVENT_LIST, events_json);
+        session->send(message.dump());
+        
+        std::cout << "Sent " << events.size() << " events to authenticated user" << std::endl;
+        
+    } catch (const std::exception& e) {
+        std::cerr << "Error listing events: " << e.what() << std::endl;
     }
-    
-    auto message = Protocol::create_message(Protocol::EVENT_LIST, events_json);
-    session->send(message.dump());
 }
 
 void EventServer::broadcast_to_all(const std::string& message) {
@@ -402,11 +602,144 @@ void EventServer::broadcast_event_update(const Event& event, const std::string& 
     broadcast_to_all(message.dump());
 }
 
+// void EventServer::send_reminder(const Event& event) {
+//     nlohmann::json reminder_data = event.to_json();
+//     reminder_data["message"] = "Reminder: " + event.title + " starts in " + 
+//                              std::to_string(event.time_until_event().count()) + " minutes";
+    
+//     auto message = Protocol::create_message(Protocol::REMINDER, reminder_data);
+//     broadcast_to_all(message.dump());
+// }
+
 void EventServer::send_reminder(const Event& event) {
     nlohmann::json reminder_data = event.to_json();
     reminder_data["message"] = "Reminder: " + event.title + " starts in " + 
                              std::to_string(event.time_until_event().count()) + " minutes";
     
     auto message = Protocol::create_message(Protocol::REMINDER, reminder_data);
+    
+    // SHARED REMINDERS: Send reminder to ALL authenticated users
     broadcast_to_all(message.dump());
+    std::cout << "Reminder sent to all users for event: " << event.title << std::endl;
+}
+
+// Authentication methods
+bool EventServer::is_authenticated(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data) {
+    if (!data.contains("auth_token")) {
+        nlohmann::json error_response = {
+            {"error", "Authentication required"},
+            {"code", "AUTH_REQUIRED"}
+        };
+        auto message = Protocol::create_message(Protocol::AUTH_ERROR, error_response);
+        session->send(message.dump());
+        return false;
+    }
+    
+    std::string token = data["auth_token"];
+    if (!m_authManager->validate_token(token)) {
+        nlohmann::json error_response = {
+            {"error", "Invalid or expired token"},
+            {"code", "INVALID_TOKEN"}
+        };
+        auto message = Protocol::create_message(Protocol::AUTH_ERROR, error_response);
+        session->send(message.dump());
+        return false;
+    }
+    
+    return true;
+}
+
+void EventServer::handle_auth_login(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data) {
+    try {
+        std::string username = data["username"];
+        std::string password = data["password"];
+        
+        AuthToken token = m_authManager->login(username, password);
+        
+        if (token.token.empty()) {
+            nlohmann::json error_response = {
+                {"error", "Invalid username or password"},
+                {"code", "INVALID_CREDENTIALS"}
+            };
+            auto message = Protocol::create_message(Protocol::AUTH_ERROR, error_response);
+            session->send(message.dump());
+            return;
+        }
+        
+        // Get user info
+        User user = m_authManager->get_user_by_token(token.token);
+        
+        nlohmann::json success_response = {
+            {"token", token.token},
+            {"user", user.to_json()}
+        };
+        auto message = Protocol::create_message(Protocol::AUTH_SUCCESS, success_response);
+        session->send(message.dump());
+        
+        std::cout << "User " << username << " logged in successfully" << std::endl;
+        
+    } catch (const std::exception& e) {
+        std::cerr << "Login error: " << e.what() << std::endl;
+        nlohmann::json error_response = {
+            {"error", "Login failed"},
+            {"code", "LOGIN_ERROR"}
+        };
+        auto message = Protocol::create_message(Protocol::AUTH_ERROR, error_response);
+        session->send(message.dump());
+    }
+}
+
+void EventServer::handle_auth_register(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data) {
+    try {
+        std::string username = data["username"];
+        std::string email = data["email"];
+        std::string password = data["password"];
+        std::string display_name = data.contains("display_name") ? data["display_name"].get<std::string>() : username;
+        
+        bool success = m_authManager->register_user(username, email, password, display_name);
+        
+        if (success) {
+            nlohmann::json success_response = {
+                {"message", "User registered successfully"}
+            };
+            auto message = Protocol::create_message(Protocol::AUTH_SUCCESS, success_response);
+            session->send(message.dump());
+            
+            std::cout << "User " << username << " registered successfully" << std::endl;
+        } else {
+            nlohmann::json error_response = {
+                {"error", "Registration failed. Username or email may already exist."},
+                {"code", "REGISTRATION_FAILED"}
+            };
+            auto message = Protocol::create_message(Protocol::AUTH_ERROR, error_response);
+            session->send(message.dump());
+        }
+        
+    } catch (const std::exception& e) {
+        std::cerr << "Registration error: " << e.what() << std::endl;
+        nlohmann::json error_response = {
+            {"error", "Registration failed"},
+            {"code", "REGISTRATION_ERROR"}
+        };
+        auto message = Protocol::create_message(Protocol::AUTH_ERROR, error_response);
+        session->send(message.dump());
+    }
+}
+
+void EventServer::handle_auth_logout(std::shared_ptr<WebSocketSession> session, const nlohmann::json& data) {
+    try {
+        if (data.contains("auth_token")) {
+            std::string token = data["auth_token"];
+            m_authManager->logout(token);
+        }
+        
+        nlohmann::json success_response = {
+            {"message", "Logged out successfully"}
+        };
+        auto message = Protocol::create_message(Protocol::AUTH_SUCCESS, success_response);
+        session->send(message.dump());
+        
+    } catch (const std::exception& e) {
+        std::cerr << "Logout error: " << e.what() << std::endl;
+    }
 }

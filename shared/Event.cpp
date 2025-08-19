@@ -2,17 +2,17 @@
 #include <iomanip>
 #include <sstream>
 
-Event::Event() : id(0), reminder_sent(false) {
+Event::Event() : id(0), user_id(0), reminder_sent(false) {
     auto now = std::chrono::system_clock::now();
     created_at = now;
     event_time = now + std::chrono::hours(1); // Default 1 hour from now
     reminder_time = event_time - std::chrono::hours(1); // 1 hour before event
 }
 
-Event::Event(const std::string& title, const std::string& description, 
+Event::Event(int user_id, const std::string& title, const std::string& description, 
              const std::chrono::system_clock::time_point& event_time,
              const std::string& creator)
-    : id(0), title(title), description(description), event_time(event_time),
+    : id(0), user_id(user_id), title(title), description(description), event_time(event_time),
       creator(creator), reminder_sent(false) {
     
     created_at = std::chrono::system_clock::now();
@@ -29,6 +29,7 @@ nlohmann::json Event::to_json() const {
 
     return nlohmann::json{
         {"id", id},
+        {"user_id", user_id},
         {"title", title},
         {"description", description},
         {"event_time", event_time_ms},
@@ -42,6 +43,7 @@ nlohmann::json Event::to_json() const {
 Event Event::from_json(const nlohmann::json& j) {
     Event event;
     event.id = j["id"];
+    event.user_id = j.contains("user_id") ? j["user_id"].get<int>() : 0;
     event.title = j["title"];
     event.description = j["description"];
     event.creator = j["creator"];

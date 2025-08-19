@@ -177,6 +177,54 @@ Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/event_server.dir/build.make CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.s
 .PHONY : Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.s
 
+Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.o: Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o
+.PHONY : Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.o
+
+# target to build an object file
+Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/event_server.dir/build.make CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o
+.PHONY : Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o
+
+Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.i: Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.i
+.PHONY : Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.i
+
+# target to preprocess a source file
+Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/event_server.dir/build.make CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.i
+.PHONY : Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.i
+
+Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.s: Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.s
+.PHONY : Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.s
+
+# target to generate assembly for a file
+Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/event_server.dir/build.make CMakeFiles/event_server.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.s
+.PHONY : Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.s
+
+src/AuthManager.o: src/AuthManager.cpp.o
+.PHONY : src/AuthManager.o
+
+# target to build an object file
+src/AuthManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/event_server.dir/build.make CMakeFiles/event_server.dir/src/AuthManager.cpp.o
+.PHONY : src/AuthManager.cpp.o
+
+src/AuthManager.i: src/AuthManager.cpp.i
+.PHONY : src/AuthManager.i
+
+# target to preprocess a source file
+src/AuthManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/event_server.dir/build.make CMakeFiles/event_server.dir/src/AuthManager.cpp.i
+.PHONY : src/AuthManager.cpp.i
+
+src/AuthManager.s: src/AuthManager.cpp.s
+.PHONY : src/AuthManager.s
+
+# target to generate assembly for a file
+src/AuthManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/event_server.dir/build.make CMakeFiles/event_server.dir/src/AuthManager.cpp.s
+.PHONY : src/AuthManager.cpp.s
+
 src/Database.o: src/Database.cpp.o
 .PHONY : src/Database.o
 
@@ -288,6 +336,12 @@ help:
 	@echo "... Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.o"
 	@echo "... Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.i"
 	@echo "... Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.s"
+	@echo "... Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.o"
+	@echo "... Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.i"
+	@echo "... Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.s"
+	@echo "... src/AuthManager.o"
+	@echo "... src/AuthManager.i"
+	@echo "... src/AuthManager.s"
 	@echo "... src/Database.o"
 	@echo "... src/Database.i"
 	@echo "... src/Database.s"

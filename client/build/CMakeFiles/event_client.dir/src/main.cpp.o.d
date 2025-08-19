@@ -282,6 +282,7 @@ CMakeFiles/event_client.dir/src/main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__mbstate_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_mbstate_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/assert.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_static_assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/17/include/stdbool.h \
@@ -1105,4 +1106,7 @@ CMakeFiles/event_client.dir/src/main.cpp.o: \
   /usr/local/include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
   /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/EventModel.h \
   /usr/local/lib/QtCore.framework/Headers/QAbstractTableModel \
-  /usr/local/lib/QtCore.framework/Headers/qabstractitemmodel.h
+  /usr/local/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+  /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/LoginDialog.h \
+  /usr/local/lib/QtWidgets.framework/Headers/QDialog \
+  /usr/local/lib/QtWidgets.framework/Headers/qdialog.h

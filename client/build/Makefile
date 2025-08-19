@@ -203,6 +203,30 @@ Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/event_client.dir/build.make CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.s
 .PHONY : Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.s
 
+Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.o: Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o
+.PHONY : Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.o
+
+# target to build an object file
+Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/event_client.dir/build.make CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o
+.PHONY : Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o
+
+Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.i: Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.i
+.PHONY : Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.i
+
+# target to preprocess a source file
+Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/event_client.dir/build.make CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.i
+.PHONY : Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.i
+
+Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.s: Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.s
+.PHONY : Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.s
+
+# target to generate assembly for a file
+Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/event_client.dir/build.make CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.s
+.PHONY : Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.s
+
 event_client_autogen/3YJK5W5UP7/qrc_resources.o: event_client_autogen/3YJK5W5UP7/qrc_resources.cpp.o
 .PHONY : event_client_autogen/3YJK5W5UP7/qrc_resources.o
 
@@ -299,6 +323,30 @@ src/EventModel.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/event_client.dir/build.make CMakeFiles/event_client.dir/src/EventModel.cpp.s
 .PHONY : src/EventModel.cpp.s
 
+src/LoginDialog.o: src/LoginDialog.cpp.o
+.PHONY : src/LoginDialog.o
+
+# target to build an object file
+src/LoginDialog.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/event_client.dir/build.make CMakeFiles/event_client.dir/src/LoginDialog.cpp.o
+.PHONY : src/LoginDialog.cpp.o
+
+src/LoginDialog.i: src/LoginDialog.cpp.i
+.PHONY : src/LoginDialog.i
+
+# target to preprocess a source file
+src/LoginDialog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/event_client.dir/build.make CMakeFiles/event_client.dir/src/LoginDialog.cpp.i
+.PHONY : src/LoginDialog.cpp.i
+
+src/LoginDialog.s: src/LoginDialog.cpp.s
+.PHONY : src/LoginDialog.s
+
+# target to generate assembly for a file
+src/LoginDialog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/event_client.dir/build.make CMakeFiles/event_client.dir/src/LoginDialog.cpp.s
+.PHONY : src/LoginDialog.cpp.s
+
 src/MainWindow.o: src/MainWindow.cpp.o
 .PHONY : src/MainWindow.o
 
@@ -388,6 +436,9 @@ help:
 	@echo "... Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.o"
 	@echo "... Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.i"
 	@echo "... Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.s"
+	@echo "... Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.o"
+	@echo "... Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.i"
+	@echo "... Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.s"
 	@echo "... event_client_autogen/3YJK5W5UP7/qrc_resources.o"
 	@echo "... event_client_autogen/3YJK5W5UP7/qrc_resources.i"
 	@echo "... event_client_autogen/3YJK5W5UP7/qrc_resources.s"
@@ -400,6 +451,9 @@ help:
 	@echo "... src/EventModel.o"
 	@echo "... src/EventModel.i"
 	@echo "... src/EventModel.s"
+	@echo "... src/LoginDialog.o"
+	@echo "... src/LoginDialog.i"
+	@echo "... src/LoginDialog.s"
 	@echo "... src/MainWindow.o"
 	@echo "... src/MainWindow.i"
 	@echo "... src/MainWindow.s"

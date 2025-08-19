@@ -284,6 +284,7 @@ CMakeFiles/event_client.dir/event_client_autogen/mocs_compilation.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__mbstate_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_mbstate_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/assert.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_static_assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/stdbool.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/17/include/stdbool.h \
@@ -1045,6 +1046,8 @@ CMakeFiles/event_client.dir/event_client_autogen/mocs_compilation.cpp.o: \
   /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/event_client_autogen/UVLADIE3JM/../../../src/EventModel.h \
   /usr/local/lib/QtCore.framework/Headers/QAbstractTableModel \
   /usr/local/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+  /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/event_client_autogen/UVLADIE3JM/moc_LoginDialog.cpp \
+  /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/event_client_autogen/UVLADIE3JM/../../../src/LoginDialog.h \
   /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/event_client_autogen/UVLADIE3JM/moc_MainWindow.cpp \
   /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/event_client_autogen/UVLADIE3JM/../../../src/MainWindow.h \
   /usr/local/lib/QtWidgets.framework/Headers/QMainWindow \

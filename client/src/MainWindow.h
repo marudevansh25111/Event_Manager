@@ -8,6 +8,7 @@
 #include <memory>
 #include "WebSocketClient.h"
 #include "EventModel.h"
+#include "LoginDialog.h"
 
 QT_BEGIN_NAMESPACE
 class QTableView;
@@ -36,12 +37,21 @@ private slots:
     void onReminderReceived(const Event& event, const QString& message);
     void onConnectionError(const QString& error);
     
+    // Authentication slots
+    void onAuthenticationSucceeded(const QString& username, const QString& token);
+    void onAuthenticationFailed(const QString& error);
+    void onRegistrationSucceeded();
+    void onRegistrationFailed(const QString& error);
+    void onLoggedOut();
+    
     void onAddEventClicked();
     void onEditEventClicked();
     void onDeleteEventClicked();
     void onRefreshClicked();
     void onConnectClicked();
     void onDisconnectClicked();
+    void onLoginClicked();
+    void onLogoutClicked();
     
     void onEventDoubleClicked(const QModelIndex& index);
     void updateConnectionStatus();
@@ -55,6 +65,8 @@ private:
     void setupSystemTray();
     void connectToServer();
     void updateButtons();
+    void updateAuthenticationUI();
+    void showLoginDialog();
     void closeEvent(QCloseEvent* event) override;
     
     // UI components
@@ -66,7 +78,10 @@ private:
     QLineEdit* m_serverAddressEdit;
     QPushButton* m_connectButton;
     QPushButton* m_disconnectButton;
+    QPushButton* m_loginButton;
+    QPushButton* m_logoutButton;
     QLabel* m_statusLabel;
+    QLabel* m_userLabel;
     
     QTableView* m_eventTable;
     QPushButton* m_addButton;
@@ -85,6 +100,9 @@ private:
     
     QString m_currentServerAddress;
     bool m_isConnected;
+    bool m_isAuthenticated;
+    QString m_currentUser;
+    QString m_authToken;
 };
 
 #endif // MAINWINDOW_H

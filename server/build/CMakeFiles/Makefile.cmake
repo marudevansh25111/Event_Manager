@@ -112,8 +112,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/local/share/cmake/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake"
   "/usr/local/share/cmake/Modules/Compiler/zOS-C-DetermineCompiler.cmake"
   "/usr/local/share/cmake/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake"
-  "/usr/local/share/cmake/Modules/FindBoost.cmake"
-  "/usr/local/share/cmake/Modules/FindOpenSSL.cmake"
   "/usr/local/share/cmake/Modules/FindPackageHandleStandardArgs.cmake"
   "/usr/local/share/cmake/Modules/FindPackageMessage.cmake"
   "/usr/local/share/cmake/Modules/FindPkgConfig.cmake"

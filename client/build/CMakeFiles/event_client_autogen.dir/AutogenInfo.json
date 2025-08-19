@@ -631,6 +631,12 @@
 			null
 		],
 		[
+			"/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/LoginDialog.h",
+			"MU",
+			"UVLADIE3JM/moc_LoginDialog.cpp",
+			null
+		],
+		[
 			"/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/MainWindow.h",
 			"MU",
 			"UVLADIE3JM/moc_MainWindow.cpp",
@@ -652,6 +658,12 @@
 			"/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.h",
 			"MU",
 			"X7FGOV3NI4/moc_Protocol.cpp",
+			null
+		],
+		[
+			"/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.h",
+			"MU",
+			"X7FGOV3NI4/moc_User.cpp",
 			null
 		]
 	],
@@ -677,6 +689,7 @@
 	"MOC_INCLUDES" : 
 	[
 		"/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared",
+		"/usr/local/opt/openssl@3/include",
 		"/usr/local/lib/QtCore.framework/Headers",
 		"/usr/local/lib/QtCore.framework",
 		"/usr/local/share/qt/mkspecs/macx-clang",
@@ -738,6 +751,11 @@
 			null
 		],
 		[
+			"/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/LoginDialog.cpp",
+			"MU",
+			null
+		],
+		[
 			"/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/MainWindow.cpp",
 			"MU",
 			null
@@ -759,6 +777,11 @@
 		],
 		[
 			"/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp",
 			"MU",
 			null
 		]

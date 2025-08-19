@@ -761,6 +761,7 @@
   /Library/Developer/CommandLineTools/usr/lib/clang/17/include/limits.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/17/include/stdarg.h \
   /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/EventModel.h \
+  /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/LoginDialog.h \
   /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/WebSocketClient.h \
   /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.h \
   /usr/local/Cellar/nlohmann-json/3.12.0/include/nlohmann/adl_serializer.hpp \
@@ -1005,9 +1006,11 @@
   /usr/local/Cellar/qt/6.9.1/lib/QtWebSockets.framework/Versions/A/Headers/qwebsocket.h \
   /usr/local/Cellar/qt/6.9.1/lib/QtWebSockets.framework/Versions/A/Headers/qwebsocketprotocol.h \
   /usr/local/Cellar/qt/6.9.1/lib/QtWebSockets.framework/Versions/A/Headers/qwebsockets_global.h \
+  /usr/local/Cellar/qt/6.9.1/lib/QtWidgets.framework/Versions/A/Headers/QDialog \
   /usr/local/Cellar/qt/6.9.1/lib/QtWidgets.framework/Versions/A/Headers/QMainWindow \
   /usr/local/Cellar/qt/6.9.1/lib/QtWidgets.framework/Versions/A/Headers/QMenu \
   /usr/local/Cellar/qt/6.9.1/lib/QtWidgets.framework/Versions/A/Headers/QSystemTrayIcon \
+  /usr/local/Cellar/qt/6.9.1/lib/QtWidgets.framework/Versions/A/Headers/qdialog.h \
   /usr/local/Cellar/qt/6.9.1/lib/QtWidgets.framework/Versions/A/Headers/qmainwindow.h \
   /usr/local/Cellar/qt/6.9.1/lib/QtWidgets.framework/Versions/A/Headers/qmenu.h \
   /usr/local/Cellar/qt/6.9.1/lib/QtWidgets.framework/Versions/A/Headers/qsizepolicy.h \

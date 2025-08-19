@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , m_centralWidget(nullptr)
     , m_isConnected(false)
+    , m_isAuthenticated(false)
 {
     setupUI();
     setupSystemTray();
@@ -49,12 +50,25 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_client.get(), &WebSocketClient::errorOccurred,
             this, &MainWindow::onConnectionError);
     
+    // Connect authentication signals
+    connect(m_client.get(), &WebSocketClient::authenticationSucceeded,
+            this, &MainWindow::onAuthenticationSucceeded);
+    connect(m_client.get(), &WebSocketClient::authenticationFailed,
+            this, &MainWindow::onAuthenticationFailed);
+    connect(m_client.get(), &WebSocketClient::registrationSucceeded,
+            this, &MainWindow::onRegistrationSucceeded);
+    connect(m_client.get(), &WebSocketClient::registrationFailed,
+            this, &MainWindow::onRegistrationFailed);
+    connect(m_client.get(), &WebSocketClient::loggedOut,
+            this, &MainWindow::onLoggedOut);
+    
     // Setup status timer
     m_statusTimer = new QTimer(this);
     connect(m_statusTimer, &QTimer::timeout, this, &MainWindow::updateConnectionStatus);
     m_statusTimer->start(1000); // Update every second
     
     updateButtons();
+    updateAuthenticationUI();
 }
 
 MainWindow::~MainWindow() = default;
@@ -70,13 +84,19 @@ void MainWindow::setupUI() {
     m_serverAddressEdit = new QLineEdit("ws://localhost:8080");
     m_connectButton = new QPushButton("Connect");
     m_disconnectButton = new QPushButton("Disconnect");
+    m_loginButton = new QPushButton("Login");
+    m_logoutButton = new QPushButton("Logout");
     m_statusLabel = new QLabel("Disconnected");
+    m_userLabel = new QLabel("Not logged in");
     
     m_connectionLayout->addWidget(new QLabel("Server:"));
     m_connectionLayout->addWidget(m_serverAddressEdit);
     m_connectionLayout->addWidget(m_connectButton);
     m_connectionLayout->addWidget(m_disconnectButton);
+    m_connectionLayout->addWidget(m_loginButton);
+    m_connectionLayout->addWidget(m_logoutButton);
     m_connectionLayout->addStretch();
+    m_connectionLayout->addWidget(m_userLabel);
     m_connectionLayout->addWidget(m_statusLabel);
     
     // Event table
@@ -99,10 +119,22 @@ void MainWindow::setupUI() {
     m_mainLayout->addLayout(m_connectionLayout);
     m_mainLayout->addWidget(m_eventTable);
     m_mainLayout->addLayout(m_buttonLayout);
+
+    // // TESTING: Add a test reminder button (temporary)
+    // QPushButton* testReminderButton = new QPushButton("Test Reminder");
+    // connect(testReminderButton, &QPushButton::clicked, this, [this]() {
+    //     qDebug() << "🧪 Testing system tray reminder manually";
+    //     showReminder("Test Reminder", "This is a test reminder from the system tray!");
+    // });
+    
+    // // Add the test button to your layout (temporarily)
+    // m_buttonLayout->addWidget(testReminderButton);
     
     // Connect button signals
     connect(m_connectButton, &QPushButton::clicked, this, &MainWindow::onConnectClicked);
     connect(m_disconnectButton, &QPushButton::clicked, this, &MainWindow::onDisconnectClicked);
+    connect(m_loginButton, &QPushButton::clicked, this, &MainWindow::onLoginClicked);
+    connect(m_logoutButton, &QPushButton::clicked, this, &MainWindow::onLogoutClicked);
     connect(m_addButton, &QPushButton::clicked, this, &MainWindow::onAddEventClicked);
     connect(m_editButton, &QPushButton::clicked, this, &MainWindow::onEditEventClicked);
     connect(m_deleteButton, &QPushButton::clicked, this, &MainWindow::onDeleteEventClicked);
@@ -153,17 +185,23 @@ void MainWindow::onConnectedToServer() {
     m_isConnected = true;
     m_statusLabel->setText("Connected");
     m_statusLabel->setStyleSheet("color: green;");
-    updateButtons();
+    updateAuthenticationUI();
     
-    // Request all events
-    m_client->requestEventList();
+    // Show login dialog automatically when connected
+    if (!m_isAuthenticated) {
+        QTimer::singleShot(500, this, &MainWindow::showLoginDialog);
+    }
 }
 
 void MainWindow::onDisconnectedFromServer() {
     m_isConnected = false;
+    m_isAuthenticated = false;
+    m_currentUser.clear();
+    m_authToken.clear();
     m_statusLabel->setText("Disconnected");
     m_statusLabel->setStyleSheet("color: red;");
-    updateButtons();
+    m_eventModel->clear();
+    updateAuthenticationUI();
 }
 
 void MainWindow::onEventReceived(const Event& event, const QString& action) {
@@ -188,7 +226,60 @@ void MainWindow::onConnectionError(const QString& error) {
     updateButtons();
 }
 
+void MainWindow::onAuthenticationSucceeded(const QString& username, const QString& token) {
+    m_isAuthenticated = true;
+    m_currentUser = username;
+    m_authToken = token;
+    updateAuthenticationUI();
+    
+    // Request user's events
+    m_client->requestEventList();
+    
+    QMessageBox::information(this, "Login Successful", 
+                           QString("Welcome back, %1!").arg(username));
+}
+
+void MainWindow::onAuthenticationFailed(const QString& error) {
+    m_isAuthenticated = false;
+    m_currentUser.clear();
+    m_authToken.clear();
+    updateAuthenticationUI();
+    
+    QMessageBox::warning(this, "Login Failed", error);
+}
+
+void MainWindow::onRegistrationSucceeded() {
+    QMessageBox::information(this, "Registration Successful", 
+                           "Your account has been created successfully! You can now log in.");
+    
+    // Show login dialog again
+    showLoginDialog();
+}
+
+void MainWindow::onRegistrationFailed(const QString& error) {
+    QMessageBox::warning(this, "Registration Failed", error);
+    
+    // Show login dialog again (user might want to try different credentials)
+    showLoginDialog();
+}
+
+void MainWindow::onLoggedOut() {
+    m_isAuthenticated = false;
+    m_currentUser.clear();
+    m_authToken.clear();
+    m_eventModel->clear();
+    updateAuthenticationUI();
+    
+    QMessageBox::information(this, "Logged Out", "You have been logged out successfully.");
+}
+
 void MainWindow::onAddEventClicked() {
+    if (!m_isAuthenticated) {
+        QMessageBox::warning(this, "Authentication Required", 
+                           "Please log in to add events.");
+        return;
+    }
+    
     EventDialog dialog(this);
     if (dialog.exec() == QDialog::Accepted) {
         Event event = dialog.getEvent();
@@ -233,7 +324,7 @@ void MainWindow::onDeleteEventClicked() {
 }
 
 void MainWindow::onRefreshClicked() {
-    if (m_isConnected) {
+    if (m_isConnected && m_isAuthenticated) {
         m_client->requestEventList();
     }
 }
@@ -251,6 +342,18 @@ void MainWindow::onConnectClicked() {
 
 void MainWindow::onDisconnectClicked() {
     m_client->disconnectFromServer();
+}
+
+void MainWindow::onLoginClicked() {
+    showLoginDialog();
+}
+
+void MainWindow::onLogoutClicked() {
+    int ret = QMessageBox::question(this, "Confirm Logout", 
+                                  "Are you sure you want to log out?");
+    if (ret == QMessageBox::Yes) {
+        m_client->logout();
+    }
 }
 
 void MainWindow::onEventDoubleClicked(const QModelIndex& index) {
@@ -280,21 +383,115 @@ void MainWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason) {
     }
 }
 
+// void MainWindow::showReminder(const QString& title, const QString& message) {
+//     if (m_trayIcon && m_trayIcon->isVisible()) {
+//         m_trayIcon->showMessage(title, message, QSystemTrayIcon::Information, 5000);
+//     } else {
+//         QMessageBox::information(this, title, message);
+//     }
+// }
+
 void MainWindow::showReminder(const QString& title, const QString& message) {
-    if (m_trayIcon && m_trayIcon->isVisible()) {
-        m_trayIcon->showMessage(title, message, QSystemTrayIcon::Information, 5000);
-    } else {
-        QMessageBox::information(this, title, message);
+    qDebug() << "🔔 CLIENT: Showing reminder - Title:" << title << ", Message:" << message;
+    
+    // Check system tray availability
+    if (!QSystemTrayIcon::isSystemTrayAvailable()) {
+        qDebug() << "❌ System tray is not available on this system";
+        QMessageBox::critical(this, "System Tray", "System tray is not available on this system.");
+        return;
     }
+    
+    if (!m_trayIcon) {
+        qDebug() << "❌ Tray icon is null";
+        QMessageBox::information(this, title, message);
+        return;
+    }
+    
+    if (!m_trayIcon->isVisible()) {
+        qDebug() << "❌ Tray icon is not visible";
+        // Try to make it visible
+        m_trayIcon->show();
+        if (!m_trayIcon->isVisible()) {
+            qDebug() << "❌ Failed to make tray icon visible";
+            QMessageBox::information(this, title, message);
+            return;
+        }
+    }
+    
+    qDebug() << "✅ System tray is available and visible";
+    qDebug() << "🔔 Showing system tray notification with 10 second duration";
+    
+    // Show system tray notification with longer duration
+    m_trayIcon->showMessage(
+        "🔔 " + title,                           // Title with emoji
+        message,                                 // Message content
+        QSystemTrayIcon::Information,            // Icon type
+        10000                                    // Duration: 10 seconds (longer than default)
+    );
+    
+    qDebug() << "✅ System tray notification sent";
+    
+    // // Also log to console for debugging
+    // std::cout << "🔔 SYSTEM TRAY REMINDER: " << title.toStdString() 
+    //           << " - " << message.toStdString() << std::endl;
 }
 
+
+
 void MainWindow::updateButtons() {
+    bool canUseEvents = m_isConnected && m_isAuthenticated;
+    
     m_connectButton->setEnabled(!m_isConnected);
     m_disconnectButton->setEnabled(m_isConnected);
-    m_addButton->setEnabled(m_isConnected);
-    m_editButton->setEnabled(m_isConnected);
-    m_deleteButton->setEnabled(m_isConnected);
-    m_refreshButton->setEnabled(m_isConnected);
+    m_loginButton->setEnabled(m_isConnected && !m_isAuthenticated);
+    m_logoutButton->setEnabled(m_isConnected && m_isAuthenticated);
+    
+    m_addButton->setEnabled(canUseEvents);
+    m_editButton->setEnabled(canUseEvents);
+    m_deleteButton->setEnabled(canUseEvents);
+    m_refreshButton->setEnabled(canUseEvents);
+}
+
+void MainWindow::updateAuthenticationUI() {
+    // Update button states
+    m_loginButton->setVisible(!m_isAuthenticated);
+    m_logoutButton->setVisible(m_isAuthenticated);
+    
+    // Update user label
+    if (m_isAuthenticated) {
+        m_userLabel->setText(QString("Welcome, %1").arg(m_currentUser));
+        m_userLabel->setStyleSheet("color: green; font-weight: bold;");
+    } else {
+        m_userLabel->setText("Not logged in");
+        m_userLabel->setStyleSheet("color: red;");
+    }
+    
+    updateButtons();
+}
+
+void MainWindow::showLoginDialog() {
+    if (!m_isConnected) {
+        QMessageBox::warning(this, "Not Connected", 
+                           "Please connect to the server first before logging in.");
+        return;
+    }
+    
+    LoginDialog dialog(this);
+    
+    while (dialog.exec() == QDialog::Accepted) {
+        if (dialog.isRegistering()) {
+            // Registration
+            m_client->registerUser(dialog.getUsername(), 
+                                 dialog.getEmail(),
+                                 dialog.getPassword(), 
+                                 dialog.getDisplayName());
+            break; // Exit the loop, wait for response
+        } else {
+            // Login
+            m_client->login(dialog.getUsername(), dialog.getPassword());
+            break; // Exit the loop, wait for response
+        }
+    }
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {

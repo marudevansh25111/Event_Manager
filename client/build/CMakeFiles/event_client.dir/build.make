@@ -73,7 +73,7 @@ event_client_autogen/timestamp: /usr/local/share/qt/libexec/moc
 event_client_autogen/timestamp: /usr/local/share/qt/libexec/uic
 event_client_autogen/timestamp: CMakeFiles/event_client.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target event_client"
-	/usr/local/bin/cmake -E cmake_autogen /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles/event_client_autogen.dir/AutogenInfo.json Release
+	/usr/local/bin/cmake -E cmake_autogen /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles/event_client_autogen.dir/AutogenInfo.json ""
 	/usr/local/bin/cmake -E touch /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/event_client_autogen/timestamp
 
 event_client_autogen/3YJK5W5UP7/qrc_resources.cpp: /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/resources/resources.qrc
@@ -82,7 +82,7 @@ event_client_autogen/3YJK5W5UP7/qrc_resources.cpp: /Users/devanshmaru/Desktop/Mt
 event_client_autogen/3YJK5W5UP7/qrc_resources.cpp: /usr/local/share/qt/libexec/rcc
 event_client_autogen/3YJK5W5UP7/qrc_resources.cpp: /usr/local/share/qt/libexec/rcc
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Automatic RCC for resources/resources.qrc"
-	/usr/local/bin/cmake -E cmake_autorcc /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles/event_client_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Info.json Release
+	/usr/local/bin/cmake -E cmake_autorcc /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles/event_client_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Info.json 
 
 CMakeFiles/event_client.dir/codegen:
 .PHONY : CMakeFiles/event_client.dir/codegen
@@ -143,10 +143,24 @@ CMakeFiles/event_client.dir/src/EventDialog.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/event_client.dir/src/EventDialog.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/EventDialog.cpp -o CMakeFiles/event_client.dir/src/EventDialog.cpp.s
 
+CMakeFiles/event_client.dir/src/LoginDialog.cpp.o: CMakeFiles/event_client.dir/flags.make
+CMakeFiles/event_client.dir/src/LoginDialog.cpp.o: /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/LoginDialog.cpp
+CMakeFiles/event_client.dir/src/LoginDialog.cpp.o: CMakeFiles/event_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/event_client.dir/src/LoginDialog.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/event_client.dir/src/LoginDialog.cpp.o -MF CMakeFiles/event_client.dir/src/LoginDialog.cpp.o.d -o CMakeFiles/event_client.dir/src/LoginDialog.cpp.o -c /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/LoginDialog.cpp
+
+CMakeFiles/event_client.dir/src/LoginDialog.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/event_client.dir/src/LoginDialog.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/LoginDialog.cpp > CMakeFiles/event_client.dir/src/LoginDialog.cpp.i
+
+CMakeFiles/event_client.dir/src/LoginDialog.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/event_client.dir/src/LoginDialog.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/LoginDialog.cpp -o CMakeFiles/event_client.dir/src/LoginDialog.cpp.s
+
 CMakeFiles/event_client.dir/src/WebSocketClient.cpp.o: CMakeFiles/event_client.dir/flags.make
 CMakeFiles/event_client.dir/src/WebSocketClient.cpp.o: /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/WebSocketClient.cpp
 CMakeFiles/event_client.dir/src/WebSocketClient.cpp.o: CMakeFiles/event_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/event_client.dir/src/WebSocketClient.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/event_client.dir/src/WebSocketClient.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/event_client.dir/src/WebSocketClient.cpp.o -MF CMakeFiles/event_client.dir/src/WebSocketClient.cpp.o.d -o CMakeFiles/event_client.dir/src/WebSocketClient.cpp.o -c /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/WebSocketClient.cpp
 
 CMakeFiles/event_client.dir/src/WebSocketClient.cpp.i: cmake_force
@@ -160,7 +174,7 @@ CMakeFiles/event_client.dir/src/WebSocketClient.cpp.s: cmake_force
 CMakeFiles/event_client.dir/src/EventModel.cpp.o: CMakeFiles/event_client.dir/flags.make
 CMakeFiles/event_client.dir/src/EventModel.cpp.o: /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/EventModel.cpp
 CMakeFiles/event_client.dir/src/EventModel.cpp.o: CMakeFiles/event_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/event_client.dir/src/EventModel.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/event_client.dir/src/EventModel.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/event_client.dir/src/EventModel.cpp.o -MF CMakeFiles/event_client.dir/src/EventModel.cpp.o.d -o CMakeFiles/event_client.dir/src/EventModel.cpp.o -c /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/EventModel.cpp
 
 CMakeFiles/event_client.dir/src/EventModel.cpp.i: cmake_force
@@ -174,7 +188,7 @@ CMakeFiles/event_client.dir/src/EventModel.cpp.s: cmake_force
 CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o: CMakeFiles/event_client.dir/flags.make
 CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o: /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp
 CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o: CMakeFiles/event_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o -MF CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o.d -o CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o -c /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp
 
 CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.i: cmake_force
@@ -188,7 +202,7 @@ CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/s
 CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o: CMakeFiles/event_client.dir/flags.make
 CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o: /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp
 CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o: CMakeFiles/event_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o -MF CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o.d -o CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o -c /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp
 
 CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.i: cmake_force
@@ -199,10 +213,24 @@ CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/s
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp -o CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.s
 
+CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o: CMakeFiles/event_client.dir/flags.make
+CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o: /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp
+CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o: CMakeFiles/event_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o -MF CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o.d -o CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o -c /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp
+
+CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp > CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.i
+
+CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp -o CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.s
+
 CMakeFiles/event_client.dir/event_client_autogen/3YJK5W5UP7/qrc_resources.cpp.o: CMakeFiles/event_client.dir/flags.make
 CMakeFiles/event_client.dir/event_client_autogen/3YJK5W5UP7/qrc_resources.cpp.o: event_client_autogen/3YJK5W5UP7/qrc_resources.cpp
 CMakeFiles/event_client.dir/event_client_autogen/3YJK5W5UP7/qrc_resources.cpp.o: CMakeFiles/event_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/event_client.dir/event_client_autogen/3YJK5W5UP7/qrc_resources.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/event_client.dir/event_client_autogen/3YJK5W5UP7/qrc_resources.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/event_client.dir/event_client_autogen/3YJK5W5UP7/qrc_resources.cpp.o -MF CMakeFiles/event_client.dir/event_client_autogen/3YJK5W5UP7/qrc_resources.cpp.o.d -o CMakeFiles/event_client.dir/event_client_autogen/3YJK5W5UP7/qrc_resources.cpp.o -c /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/event_client_autogen/3YJK5W5UP7/qrc_resources.cpp
 
 CMakeFiles/event_client.dir/event_client_autogen/3YJK5W5UP7/qrc_resources.cpp.i: cmake_force
@@ -219,10 +247,12 @@ event_client_OBJECTS = \
 "CMakeFiles/event_client.dir/src/main.cpp.o" \
 "CMakeFiles/event_client.dir/src/MainWindow.cpp.o" \
 "CMakeFiles/event_client.dir/src/EventDialog.cpp.o" \
+"CMakeFiles/event_client.dir/src/LoginDialog.cpp.o" \
 "CMakeFiles/event_client.dir/src/WebSocketClient.cpp.o" \
 "CMakeFiles/event_client.dir/src/EventModel.cpp.o" \
 "CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o" \
 "CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o" \
+"CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o" \
 "CMakeFiles/event_client.dir/event_client_autogen/3YJK5W5UP7/qrc_resources.cpp.o"
 
 # External object files for target event_client
@@ -232,19 +262,23 @@ event_client.app/Contents/MacOS/event_client: CMakeFiles/event_client.dir/event_
 event_client.app/Contents/MacOS/event_client: CMakeFiles/event_client.dir/src/main.cpp.o
 event_client.app/Contents/MacOS/event_client: CMakeFiles/event_client.dir/src/MainWindow.cpp.o
 event_client.app/Contents/MacOS/event_client: CMakeFiles/event_client.dir/src/EventDialog.cpp.o
+event_client.app/Contents/MacOS/event_client: CMakeFiles/event_client.dir/src/LoginDialog.cpp.o
 event_client.app/Contents/MacOS/event_client: CMakeFiles/event_client.dir/src/WebSocketClient.cpp.o
 event_client.app/Contents/MacOS/event_client: CMakeFiles/event_client.dir/src/EventModel.cpp.o
 event_client.app/Contents/MacOS/event_client: CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.cpp.o
 event_client.app/Contents/MacOS/event_client: CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp.o
+event_client.app/Contents/MacOS/event_client: CMakeFiles/event_client.dir/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp.o
 event_client.app/Contents/MacOS/event_client: CMakeFiles/event_client.dir/event_client_autogen/3YJK5W5UP7/qrc_resources.cpp.o
 event_client.app/Contents/MacOS/event_client: CMakeFiles/event_client.dir/build.make
 event_client.app/Contents/MacOS/event_client: /usr/local/lib/QtWidgets.framework/Versions/A/QtWidgets
 event_client.app/Contents/MacOS/event_client: /usr/local/lib/QtWebSockets.framework/Versions/A/QtWebSockets
+event_client.app/Contents/MacOS/event_client: /usr/local/opt/openssl@3/lib/libssl.dylib
+event_client.app/Contents/MacOS/event_client: /usr/local/opt/openssl@3/lib/libcrypto.dylib
 event_client.app/Contents/MacOS/event_client: /usr/local/lib/QtGui.framework/Versions/A/QtGui
 event_client.app/Contents/MacOS/event_client: /usr/local/lib/QtNetwork.framework/Versions/A/QtNetwork
 event_client.app/Contents/MacOS/event_client: /usr/local/lib/QtCore.framework/Versions/A/QtCore
 event_client.app/Contents/MacOS/event_client: CMakeFiles/event_client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable event_client.app/Contents/MacOS/event_client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable event_client.app/Contents/MacOS/event_client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/event_client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

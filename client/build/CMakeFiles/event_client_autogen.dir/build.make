@@ -72,7 +72,7 @@ event_client_autogen/timestamp: /usr/local/share/qt/libexec/moc
 event_client_autogen/timestamp: /usr/local/share/qt/libexec/uic
 event_client_autogen/timestamp: CMakeFiles/event_client_autogen.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target event_client"
-	/usr/local/bin/cmake -E cmake_autogen /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles/event_client_autogen.dir/AutogenInfo.json Release
+	/usr/local/bin/cmake -E cmake_autogen /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/CMakeFiles/event_client_autogen.dir/AutogenInfo.json ""
 	/usr/local/bin/cmake -E touch /Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/event_client_autogen/timestamp
 
 CMakeFiles/event_client_autogen.dir/codegen:

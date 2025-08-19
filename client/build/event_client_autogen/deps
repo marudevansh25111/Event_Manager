@@ -769,6 +769,8 @@ event_client_autogen/timestamp: \
 	/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/EventDialog.h \
 	/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/EventModel.cpp \
 	/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/EventModel.h \
+	/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/LoginDialog.cpp \
+	/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/LoginDialog.h \
 	/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/MainWindow.cpp \
 	/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/MainWindow.h \
 	/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/src/WebSocketClient.cpp \
@@ -778,6 +780,8 @@ event_client_autogen/timestamp: \
 	/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Event.h \
 	/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.cpp \
 	/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/Protocol.h \
+	/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.cpp \
+	/Users/devanshmaru/Desktop/Mtech/funf/event-manager/shared/User.h \
 	/usr/local/Cellar/nlohmann-json/3.12.0/include/nlohmann/adl_serializer.hpp \
 	/usr/local/Cellar/nlohmann-json/3.12.0/include/nlohmann/byte_container_with_subtype.hpp \
 	/usr/local/Cellar/nlohmann-json/3.12.0/include/nlohmann/detail/abi_macros.hpp \

@@ -4,9 +4,9 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WEBSOCKETS_LIB -DQT_WIDGETS_LIB
 
-CXX_INCLUDES = -I/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/event_client_autogen/include -I/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/../shared -isystem /usr/local/lib/QtCore.framework/Headers -iframework /usr/local/lib -isystem /usr/local/share/qt/mkspecs/macx-clang -isystem /usr/local/lib/QtWidgets.framework/Headers -isystem /usr/local/lib/QtGui.framework/Headers -isystem /usr/local/lib/QtNetwork.framework/Headers -isystem /usr/local/lib/QtWebSockets.framework/Headers
+CXX_INCLUDES = -I/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/build/event_client_autogen/include -I/Users/devanshmaru/Desktop/Mtech/funf/event-manager/client/../shared -I/usr/local/opt/openssl@3/include -isystem /usr/local/lib/QtCore.framework/Headers -iframework /usr/local/lib -isystem /usr/local/share/qt/mkspecs/macx-clang -isystem /usr/local/lib/QtWidgets.framework/Headers -isystem /usr/local/lib/QtGui.framework/Headers -isystem /usr/local/lib/QtNetwork.framework/Headers -isystem /usr/local/lib/QtWebSockets.framework/Headers
 
-CXX_FLAGSx86_64 = -O3 -DNDEBUG -std=gnu++17 -arch x86_64 -fPIC
+CXX_FLAGSx86_64 = -std=gnu++17 -arch x86_64 -fPIC
 
-CXX_FLAGS = -O3 -DNDEBUG -std=gnu++17 -arch x86_64 -fPIC
+CXX_FLAGS = -std=gnu++17 -arch x86_64 -fPIC
 

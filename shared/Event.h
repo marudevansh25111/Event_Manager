@@ -8,6 +8,7 @@
 class Event {
 public:
     int id;
+    int user_id;  // NEW: Associate event with user
     std::string title;
     std::string description;
     std::chrono::system_clock::time_point event_time;
@@ -17,7 +18,7 @@ public:
     std::chrono::system_clock::time_point created_at;
 
     Event();
-    Event(const std::string& title, const std::string& description, 
+    Event(int user_id, const std::string& title, const std::string& description, 
           const std::chrono::system_clock::time_point& event_time,
           const std::string& creator = "");
 
