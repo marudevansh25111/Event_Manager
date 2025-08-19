@@ -47,7 +47,6 @@ Client UI
 # Clone or create project directory
 mkdir event-manager && cd event-manager
 
-# Copy all the files (from the artifacts above)
 # Then run:
 
 chmod +x scripts/*.sh
